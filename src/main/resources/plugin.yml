@@ -6,3 +6,6 @@ commands:
   createstudent:
     description: Creates a student entity in the database
     usage: /createstudent <Name> <Age>
+  createteacher:
+    description: Creates a teacher entity in the database
+    usage: /createteacher <Name>

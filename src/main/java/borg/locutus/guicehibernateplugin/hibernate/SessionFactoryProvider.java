@@ -2,6 +2,7 @@ package borg.locutus.guicehibernateplugin.hibernate;
 
 
 import borg.locutus.guicehibernateplugin.hibernate.entities.student.Student;
+import borg.locutus.guicehibernateplugin.hibernate.entities.teacher.Teacher;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
@@ -28,6 +29,7 @@ public class SessionFactoryProvider implements Provider<SessionFactory> {
         final MetadataSources sources = new MetadataSources(registry);
 
         sources.addAnnotatedClass(Student.class);
+        sources.addAnnotatedClass(Teacher.class);
 
         final MetadataBuilder metadataBuilder = sources.getMetadataBuilder();
         metadataBuilder.applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE);

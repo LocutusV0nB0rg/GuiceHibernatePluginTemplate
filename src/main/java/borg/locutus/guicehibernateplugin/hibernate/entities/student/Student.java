@@ -1,11 +1,9 @@
 package borg.locutus.guicehibernateplugin.hibernate.entities.student;
 
+import borg.locutus.guicehibernateplugin.hibernate.entities.teacher.Teacher;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -17,4 +15,7 @@ public class Student {
     private String name;
 
     private int age;
+
+    @ManyToOne
+    private Teacher teacher;
 }
