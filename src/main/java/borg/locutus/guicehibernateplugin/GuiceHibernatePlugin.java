@@ -1,10 +1,11 @@
 package borg.locutus.guicehibernateplugin;
 
-import borg.locutus.guicehibernateplugin.entities.student.Student;
-import borg.locutus.guicehibernateplugin.entities.student.StudentRepository;
+import borg.locutus.guicehibernateplugin.command.CreateStudentCommand;
 import borg.locutus.guicehibernateplugin.guice.ExampleModule;
+import borg.locutus.guicehibernateplugin.listener.BlockBreakListener;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class GuiceHibernatePlugin extends JavaPlugin {
@@ -15,14 +16,13 @@ public final class GuiceHibernatePlugin extends JavaPlugin {
     public void onEnable() {
         injector = Guice.createInjector(new ExampleModule(this));
 
-        StudentRepository studentRepository = injector.getInstance(StudentRepository.class);
-        Student student = new Student();
-        student.setAge(19);
-        student.setName("Toby");
-        studentRepository.saveOrUpdate(student);
+        this.getCommand("createstudent").setExecutor(injector.getInstance(CreateStudentCommand.class));
+
+        Bukkit.getPluginManager().registerEvents(injector.getInstance(BlockBreakListener.class), injector.getInstance(GuiceHibernatePlugin.class));
     }
 
     @Override
     public void onDisable() {
+
     }
 }

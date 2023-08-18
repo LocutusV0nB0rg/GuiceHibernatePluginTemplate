@@ -1,6 +1,5 @@
-package borg.locutus.guicehibernateplugin.entities;
+package borg.locutus.guicehibernateplugin.hibernate.entities;
 
-import com.google.inject.Inject;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.IdentifierLoadAccess;
@@ -21,7 +20,28 @@ public abstract class Repository<T, S extends Serializable> {
         return this.factory.openSession();
     }
 
-    public CompletableFuture<Void> saveOrUpdate(T value) {
+    public CompletableFuture<S> save(T value) {
+        if (value == null) {
+            return CompletableFuture.completedFuture(null);
+        }
+
+        CompletableFuture<S> completableFuture = new CompletableFuture<>();
+        CompletableFuture.runAsync(() -> {
+            try (Session session = this.openSession()) {
+                final Transaction transaction = session.beginTransaction();
+                transaction.begin();
+                @SuppressWarnings("unchecked")
+                S id = (S) session.save(value);
+                transaction.commit();
+                completableFuture.complete(id);
+            } catch (Throwable t) {
+                completableFuture.completeExceptionally(t);
+            }
+        });
+        return completableFuture;
+    }
+
+    public CompletableFuture<Void> update(T value) {
         if (value == null) {
             return CompletableFuture.completedFuture(null);
         }
@@ -30,7 +50,7 @@ public abstract class Repository<T, S extends Serializable> {
             try (Session session = this.openSession()) {
                 final Transaction transaction = session.beginTransaction();
                 transaction.begin();
-                session.saveOrUpdate(value);
+                session.update(value);
                 transaction.commit();
             }
         });

@@ -1,8 +1,7 @@
 package borg.locutus.guicehibernateplugin.hibernate;
 
 
-import borg.locutus.guicehibernateplugin.GuiceHibernatePlugin;
-import borg.locutus.guicehibernateplugin.entities.student.Student;
+import borg.locutus.guicehibernateplugin.hibernate.entities.student.Student;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
@@ -14,9 +13,6 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-
-import java.io.File;
-import java.util.logging.Logger;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor__ = @Inject)

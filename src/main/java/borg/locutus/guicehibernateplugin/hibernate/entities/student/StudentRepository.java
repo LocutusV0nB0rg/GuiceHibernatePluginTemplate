@@ -1,6 +1,6 @@
-package borg.locutus.guicehibernateplugin.entities.student;
+package borg.locutus.guicehibernateplugin.hibernate.entities.student;
 
-import borg.locutus.guicehibernateplugin.entities.Repository;
+import borg.locutus.guicehibernateplugin.hibernate.entities.Repository;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import org.hibernate.SessionFactory;
