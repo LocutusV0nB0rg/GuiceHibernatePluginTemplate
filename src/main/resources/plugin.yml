@@ -1,0 +1,3 @@
+name: GuiceHibernatePlugin
+version: '${version}'
+main: borg.locutus.guicehibernateplugin.GuiceHibernatePlugin

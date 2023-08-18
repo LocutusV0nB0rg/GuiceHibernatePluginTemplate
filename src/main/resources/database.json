@@ -1,0 +1,5 @@
+{
+  "username": "guicehibernateplugin",
+  "password": "passwort123",
+  "url": "jdbc:mysql://localhost:3300/guicehibernateplugin?autoReconnect=true&connectTimeout=5000&socketTimeout=10000&characterEncoding=utf8"
+}

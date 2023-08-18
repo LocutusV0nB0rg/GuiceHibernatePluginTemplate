@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Minecraft Server" type="JarApplication">
+    <option name="JAR_PATH" value="$PROJECT_DIR$/../../../../Daten/Java/server/spigot.jar" />
+    <option name="WORKING_DIRECTORY" value="C:\Daten\Java\server\" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <method v="2">
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="GuiceHibernatePlugin [build]" run_configuration_type="GradleRunConfiguration" />
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="GuiceHibernatePlugin [copy]" run_configuration_type="GradleRunConfiguration" />
+    </method>
+  </configuration>
+</component>
