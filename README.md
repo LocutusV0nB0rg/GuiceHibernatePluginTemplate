@@ -19,7 +19,16 @@ this data to any use.
 |--------------|----------------------------------|-------------------------------------------------------------|
 | /playerstats | guicehibernateplugin.playerstats | This command displays the current stats of the given player |
 
-## Quick Walkthrough
+## Run configurations
+
+This project comes with predefined run configurations for IntelliJ IDEA. They build the shaded jar, copy it to a 
+spigot server installation and then run the server. This has the advantage that one can restart the minecraft server
+and begin debugging with a single button click and doesn't have to manually build, copy and then run the plugin. 
+Since the configs contain the absolute path of where your installation is located in your file system you will have
+to adapt the location of the jar as well as the working directory. Also, you have to update your `build.gradle.kts` to
+copy the built jar into the correct location.
+
+## Quick Walkthrough of the code
 
 This plugin demonstrates the use of Guice as a dependecy injection framework and
 Hibernate as a library to take care of your database entites. Before diving into the
@@ -31,7 +40,7 @@ the load that your server puts on the database, but I'll leave that design choic
 
 To learn about the general concepts of Spigot plugin development I highly recommend
 https://www.spigotmc.org/wiki/spigot/ as a starter guide. A lot of concepts are laid out
-in well written tutorials and it's overall a good place to get started. I will not go into
+in well written tutorials, and it's overall a good place to get started. I will not go into
 detail how the server code actually works, this can be easily found out with the resource
 I linked above. I will however leave some remarks on how some features interact with
 Guice and/or hibernate. However, one thing shall be mentioned explicitly because it is SUPER IMPORTANT!
