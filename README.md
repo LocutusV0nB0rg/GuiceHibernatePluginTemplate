@@ -1,4 +1,4 @@
-# GuiceHibernatePluginTemplate
+# GuiceHibernatePlugin Template
 
 This project is a template to facilitate the creation of plugins that use
 guice as a dependency injection framework and hibernate as a JPA providing library.
@@ -112,7 +112,29 @@ your SQL queries per hand and manage all entities and relations manually in Mine
 your shoulders. Even though it is not exactly the same thing as Spring's JPA module, it is the library that does all 
 the heavy lifting for it. I've grown to like Hibernate to manage my database stuff, this is just a personal choice.
 
-TODO: Finish hibernate explanations
+Hibernate makes use of the `javax.persistence` package to handle its entities. 
+
+Every database connection need the connections details of how to reach the database. To provide the necessary details 
+about the connection I created a data class that contains the connection url, the username and the password to use.
+It can be converted to a `Properties` object that also contains a number of details about the connection (e.g. the
+driver lass to use and more). This object is built in a `Provider` class. The provider itself gets the instance of the 
+`GuiceHibernatePlugin` and the `Gson` object. The plugin provides the data folder which contains the `database.json`.
+The connection details are parsed with Gson into the `HibernateConnectionPropeties` objects.
+
+To create the database connections a provider is used for the `SessionFactory` objects according to the usage of Guice.
+It receives the connection properties via the injector and then builds a session factory. This is done by first 
+creating a `StandardServiceRegistry` with the connection properties. Then the classes that are representing the 
+database entites are registered in an object containing metadata about the sources. After some final setup the 
+`SessionFactory` object is built and returned.
+
+The last things missing to work with the database entites that are now defined and configured are the repositories.
+I constructed an abstract `Repository` that is built similar to the `JpaRepository` interface of Spring. However, it is 
+not as feature rich and contains only the basic operations of `save`, `update`, `delete` and `findById`. The class
+is using two templates, `T` and `S extends Serializable`. `T` is the entity class and `S` is its id. This usually is 
+either a `Integer`, `Long` or `String`, but really any sensible id type can be used here as long as the database of your
+choice supports it. If you want to perform additional actions you have to define your own methods and perform the 
+queries there. Examples for how this can be done can be found in the `PlayerKillRepository`.
+
 
 
 
