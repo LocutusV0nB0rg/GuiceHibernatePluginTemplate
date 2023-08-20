@@ -3,9 +3,6 @@ version: '${version}'
 main: borg.locutus.guicehibernateplugin.GuiceHibernatePlugin
 
 commands:
-  createstudent:
-    description: Creates a student entity in the database
-    usage: /createstudent <Name> <Age>
-  createteacher:
-    description: Creates a teacher entity in the database
-    usage: /createteacher <Name>
+  playerstats:
+    description: Gets the kill/death stats of a uuid
+    usage: /playerstats <uuid>

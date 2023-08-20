@@ -1,8 +1,8 @@
 package borg.locutus.guicehibernateplugin.hibernate;
 
 
-import borg.locutus.guicehibernateplugin.hibernate.entities.student.Student;
-import borg.locutus.guicehibernateplugin.hibernate.entities.teacher.Teacher;
+import borg.locutus.guicehibernateplugin.hibernate.entities.playerdata.PlayerData;
+import borg.locutus.guicehibernateplugin.hibernate.entities.playerkill.PlayerKill;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
@@ -28,8 +28,8 @@ public class SessionFactoryProvider implements Provider<SessionFactory> {
         final StandardServiceRegistry registry = registryBuilder.build();
         final MetadataSources sources = new MetadataSources(registry);
 
-        sources.addAnnotatedClass(Student.class);
-        sources.addAnnotatedClass(Teacher.class);
+        sources.addAnnotatedClass(PlayerData.class);
+        sources.addAnnotatedClass(PlayerKill.class);
 
         final MetadataBuilder metadataBuilder = sources.getMetadataBuilder();
         metadataBuilder.applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE);
